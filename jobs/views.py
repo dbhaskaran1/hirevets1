@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("Hello world, you've reached the jobs index page")
+    return render(request, 'index.html', context={})
 
 def viewjobs(request):
     return HttpResponse("Hello world, you can view jobs")
