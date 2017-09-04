@@ -1,3 +1,11 @@
+    <!-- JS Implementing Plugins -->
+    <script src="../../../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+
+    <!-- JS Unify -->
+    <script src="../../../assets/js/helpers/hs.hamburgers.js"></script>
+    <script src="../../../assets/js/components/hs.scrollbar.js"></script>
+    <script src="../../../assets/js/components/hs.popup.js"></script>
+
     <!-- JS Global Compulsory -->
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/tether.min.js"></script>
@@ -9,6 +17,9 @@
     <script src="/static/js/dzsparallaxer.js"></script>
     <script src="/static/js/scroller.js"></script>
     <script src="/static/js/plugin.js"></script>
+    <script src="/static/js/jquery.fancybox.min.js"></script>
+    <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/static/js/hs.megamenu.js"></script>
 
     <!-- JS Unify -->
     <script src="/static/js/hs.core.js"></script>
@@ -30,11 +41,21 @@
           $.HSCore.helpers.HSHamburgers.init('.hamburger');
 
           // Initialization of HSDropdown component
-          $.HSCore.components.HSDropdown.init( $('[data-dropdown-target]'), {
+          $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
             afterOpen: function(){
               $(this).find('input[type="search"]').focus();
             }
           });
+
+          // Initialization of HSMegaMenu plugin
+          $('#dropdown-megamenu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 767
+          });
+
+          // Initialization of HSScrollBar component
+          $.HSCore.components.HSScrollBar.init($('.js-scrollbar'));
 
           // Initialization of masonry.js
           $('.masonry-grid').imagesLoaded().then(function () {
