@@ -19,6 +19,8 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^jobs/', include('jobs.urls')),
     url(r'^jobseekers/', include('jobseekers.urls')),
+    url(r'^employers/', include('employers.urls')),
+    url(r'^aboutus/', include('aboutus.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^', include('jobs.urls', namespace='jobs')),
 ]
