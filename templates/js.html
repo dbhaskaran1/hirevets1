@@ -26,45 +26,50 @@
     <script src="/static/js/custom.js"></script>
 
     <!-- JS Plugins Init. -->
+    <!-- JS Plugins Init. -->
     <script>
-      ;(function ($) {
-        'use strict';
-        $(document).on('ready', function () {
-          // Header
-          $.HSCore.components.HSHeader.init($('#js-header'));
-          $.HSCore.helpers.HSHamburgers.init('.hamburger');
+      $(document).ready(function () {
+        // initialization of carousel
+        $.HSCore.components.HSCarousel.init('.js-carousel');
 
-          // Initialization of HSDropdown component
-          $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
-            afterOpen: function(){
-              $(this).find('input[type="search"]').focus();
-            }
+        $('#we-provide').slick('setOption', 'responsive', [{
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2
+          }
+        }, {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1
+          }
+        }], true);
+
+        // initialization of masonry
+        $('.masonry-grid').imagesLoaded().then(function () {
+          $('.masonry-grid').masonry({
+            columnWidth: '.masonry-grid-sizer',
+            itemSelector: '.masonry-grid-item',
+            percentPosition: true
           });
-
-          // Initialization of HSMegaMenu plugin
-          $('#dropdown-megamenu').HSMegaMenu({
-            event: 'hover',
-            pageContainer: $('.container'),
-            breakpoint: 767
-          });
-
-          // Initialization of HSScrollBar component
-          $.HSCore.components.HSScrollBar.init($('.js-scrollbar'));
-
-          // Initialization of masonry.js
-          $('.masonry-grid').imagesLoaded().then(function () {
-            $('.masonry-grid').masonry({
-              // options
-              columnWidth: '.masonry-grid-sizer',
-              itemSelector: '.masonry-grid-item',
-              percentPosition: true
-            });
-          });
-
-          $.HSCore.components.HSCarousel.init('.js-carousel');
-
-          // Init popups
-          $.HSCore.components.HSPopup.init('.js-fancybox');
         });
-      })(jQuery);
+
+        // initialization of scroll animation
+        $.HSCore.components.HSOnScrollAnimation.init('[data-animation]');
+
+        // initialization of header's height equal offset
+        $.HSCore.helpers.HSHeightCalc.init();
+      });
+
+      $(window).on('load', function () {
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#js-header'));
+        $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+          event: 'hover',
+          pageContainer: $('.container'),
+          breakpoint: 991
+        });
+      });
     </script>
