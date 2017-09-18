@@ -1,0 +1,22 @@
+# hirevets.net nginx.conf
+
+# configuration of the server
+server {
+    # the port your site will be served on
+    listen      80;
+    # the domain name it will serve for
+    server_name hirevets.net; # substitute your machine's IP address or FQDN
+    charset     utf-8;
+
+    # max upload size
+    client_max_body_size 75M;   # adjust to taste
+
+    # Django media
+    location /static/ { alias /home/dbhaskaran/hirevets/static/; }
+
+    # Finally, send all non-media requests to the Django server.
+    location / {
+      include proxy_params;
+      proxy_pass http://unix:/tmp/hirevets.sock;
+    }
+}
