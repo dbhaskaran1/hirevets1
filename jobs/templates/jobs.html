@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block content %}
+<section class="g-bg-gray-light-v5 g-py-110">
+        <div class="container">
+                    <div class="shortcode-html">
+                      <!-- Table Inverse -->
+                      <div class="table-responsive">
+                        <table class="table table-inverse g-bg-bluegray-lineargradient g-color-white-opacity-0_6">
+                          <thead>
+                            <tr>
+                              <th>JobId</th>
+                              <th>JobTitle</th>
+                              <th>Company</th>
+                              <th>City</th>
+                              <th>State</th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+            {% for job in jobs  %}
+                            <tr>
+                              <td> {{ job.id }} </td>
+                              <td> {{ job.title }} </td>
+                              <td> {{ job.company }} </td>
+                              <td> {{ job.location_city }} </td>
+                              <td> {{ job.location_state }} </td>
+                              <td>
+                                <span class="u-label u-label-warning g-color-white">Just Posted!</span>
+                              </td>
+                            </tr>
+            {% endfor %}
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- End Table Inverse -->
+                    </div>
+          <div id="shortcode2">
+          </div>
+        </div>
+      </section>
+
+{% endblock %}
